@@ -7,10 +7,11 @@ def guess_game():
     print ("What's the number?")
     guess_num = int(input("> "))
     tried_times = 1
-    while guess_num != secret_num:
+    not_guessed = True
+    while not_guessed:
         if tried_times > 5:
             print ("You ran out of guesses!")
-            break
+            not_guessed = False
         if guess_num > secret_num:
             print ("%d is too high." % guess_num)
         else:
@@ -19,14 +20,15 @@ def guess_game():
         print ("What's the number?")
         guess_num = int(input("> "))
         tried_times += 1
-    if guess_num == secret_num:
-        print ("Yes! You win!")
+        if guess_num == secret_num:
+            print ("Yes! You win!")
+            not_guessed = False
     print ("Do you want to play again (Y or N)?")
     users_answer = input("> ")
     if users_answer == "Y":
         guess_game()
     else:
-        return print("Bye!")
+        return "Bye!"
 
 
-guess_game()
+print (guess_game())
